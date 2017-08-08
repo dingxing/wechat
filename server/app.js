@@ -1,7 +1,4 @@
 const Koa = require('koa');
-const co = require('co');
-const fs = require('fs');
-const request = require('co-request');
 const app = new Koa();
 const Router = require('koa-router');
 
@@ -21,7 +18,7 @@ home.get('/', async (ctx) => {
   `;
     ctx.body = html
 });
-router.get('/wechat', async (ctx) => {
+/*router.get('/wechat', async (ctx) => {
     // 获取微信的请求,注意是 get
     var signature = this.query.signature;
     var echostr = this.query.echostr;
@@ -50,7 +47,7 @@ router.get('/wechat', async (ctx) => {
     } else {
         return false;
     }
-});
+});*/
 
 
 // 加载路由中间件
