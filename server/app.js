@@ -4,6 +4,8 @@ const Router = require('koa-router');
 
 let home = new Router();
 let router = new Router();
+let wechat = new Router();
+
 
 home.get('/', async (ctx) => {
     let html = `
@@ -18,7 +20,9 @@ home.get('/', async (ctx) => {
   `;
     ctx.body = html
 });
-/*router.get('/wechat', async (ctx) => {
+
+router.get('/wechat', async (ctx) => {
+    ctx.body = "1111111";
     // 获取微信的请求,注意是 get
     var signature = this.query.signature;
     var echostr = this.query.echostr;
@@ -27,7 +31,6 @@ home.get('/', async (ctx) => {
 
     // 这里的token 要和你表单上面的token一致
     var token = 'MMDBB';
-
 
     // 根文档上面的,我们需要对这三个参数进行字典序排序
     var arr = [token, timestamp, nonce];
@@ -47,7 +50,7 @@ home.get('/', async (ctx) => {
     } else {
         return false;
     }
-});*/
+});
 
 
 // 加载路由中间件
@@ -55,6 +58,8 @@ app.use(router.routes()).use(router.allowedMethods());
 
 // 装载子路由
 router.use('/', home.routes(), home.allowedMethods());
+router.use('/wechat', wechat.routes(), wechat.allowedMethods());
+
 
 app.listen(3000);
 console.log("服务器已经启动");
